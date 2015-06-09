@@ -141,96 +141,43 @@ function checkCPF(vCPF) {
 
     return((mControle1 * 10) + mControle);
 }
-function buscaCep(quale) {
-	urlatual = window.location.protocol +"//"+ window.location.host + window.location.pathname;
-	if(urlatual.indexOf("/loja/") >= 0){newurlatual = window.location.protocol +"//"+ window.location.host+'/loja/';}
-	else if(urlatual.indexOf("/site/") >= 0){newurlatual = window.location.protocol +"//"+ window.location.host+'/site/';}
-	else if(urlatual.indexOf("/leo/") >= 0){newurlatual = window.location.protocol +"//"+ window.location.host+'/leo/';}
-	else if(urlatual.indexOf("/novo/") >= 0){newurlatual = window.location.protocol +"//"+ window.location.host+'/novo/';}
-	else{newurlatual = window.location.protocol +"//"+ window.location.host+'/';}
-    
-   if (!quale){
-       var cep = jQuery('input[name*="postcode"]').val();
-        if (cep != '' && cep.length == 8) {
-            loadposthideshow(true, '.onestepcheckout-postcod-process');
-            jQuery.getScript(newurlatual+"/onestepcheckout/ajax/busca_cep?cep="+ cep + "", function() {
-                loadposthideshow(false, '.onestepcheckout-postcod-process');
-                if (resultadoCEP["resultado"] != 0) {
-                    if (unescape(resultadoCEP["logradouro"])) jQuery('input[name*="street[]"]').val(unescape(resultadoCEP["tipo_logradouro"]) + " "+ unescape(resultadoCEP["logradouro"]));
-                    if (unescape(resultadoCEP["bairro"])) jQuery('input[name*="street[4]"]').val(unescape(resultadoCEP["bairro"]));
-                    if (unescape(resultadoCEP["cidade"])) jQuery('input[name*="city"]').val(unescape(resultadoCEP["cidade"]));
-                    jQuery('select[name*="region_id"]').find('option').each(function() {
-                        if (this.value == estadoBR(unescape(resultadoCEP["uf"]))) {
-                            this.selected = true;
-                        }
-                    });
-                    jQuery('input[name*="street[2]"]').focus();
-                } else {
-                    alert("Endereço não encontrado para o cep ");
-                }
-            });
-        }
-   }else{
-        var cep = jQuery('input[name*="' + quale + '[postcode]"]').val();
-        if (cep != '' && cep.length == 8) {
-            loadposthideshow(true, '.onestepcheckout-postcod-process');
-            jQuery.getScript(newurlatual+"/onestepcheckout/ajax/busca_cep?cep="+ cep + "", function() {
-                loadposthideshow(false, '.onestepcheckout-postcod-process');
-                if (resultadoCEP["resultado"] != 0) {
-                    if (unescape(resultadoCEP["logradouro"])) jQuery('input[name*="' + quale + '[street][]"]').val(unescape(resultadoCEP["tipo_logradouro"]) + " "+ unescape(resultadoCEP["logradouro"]));
-                    if (unescape(resultadoCEP["bairro"])) jQuery('input[name*="' + quale + '[street][4]"]').val(unescape(resultadoCEP["bairro"]));
-                    if (unescape(resultadoCEP["cidade"])) jQuery('input[name*="' + quale + '[city]"]').val(unescape(resultadoCEP["cidade"]));
-                    jQuery('select[name*="' + quale + '[region_id]"]').find('option').each(function() {
-                        if (this.value == estadoBR(unescape(resultadoCEP["uf"]))) {
-                            this.selected = true;
-                        }
-                    });
-                    jQuery('input[name*="' + quale + '[street][2]"]').focus();
-                } else {
-                    alert("Endereço não encontrado para o cep ");
-                }
-            });
-        }   
-   }
-}
-function estadoBR(uf) {
-    var estado;
-    var obj = {
-        'AC': 485,
-        'AL': 486,
-        'AM': 488,
-        'AP': 487,
-        'BA': 489, 
-        'CE': 490,
-        'DF': 511,
-        'ES': 491,
-        'GO': 492,
-        'MA': 493,
-        'MT': 494,
-        'MS': 495,
-        'MG': 496,
-        'PA': 497,
-        'PB': 498,
-        'PR': 499,
-        'PE': 500,
-        'PI': 501,
-        'RJ': 502,
-        'RN': 503,
-        'RO': 505,
-        'RS': 504,
-        'RR': 506,
-        'SC': 507,
-        'SE': 509,
-        'SP': 508,
-        'TO': 510
-    };
-    jQuery.each(obj, function(key, value) {
-        if (key == uf) {
-            estado = value;
-        }
-    });
-    
-    return estado;
+//Busca de CEP na base dos correios por Ajax
+var host,cep,obj;
+function buscaCep(host) {
+    console.log('Buscando CEP...');
+	if(jQuery('select[name*="country_id"]').val() == "BR"){		
+		cep = jQuery('input[id*="postcode"]').val().replace(/[^0-9]+/g, '');
+		if (cep.toString().length != 8) {
+			return false;
+		}
+        loadposthideshow(true, '.onestepcheckout-postcod-process');
+		jQuery.ajax({
+			url: host + 'frontend/base/default/onestepcheckout/js/tulipa-checkout/buscacep.php?cep=' + cep,
+			type:'GET',
+			dataType: 'html',
+        	timeout: 7000
+		 })	
+		.done(function(respostaCEP){
+			obj = jQuery.parseJSON(respostaCEP);
+			jQuery('input[id*="street1"],input[id*="street_1"]').val(obj.logradouro);
+			jQuery('input[id*="street4"],input[id*="street_4"]').val(obj.bairro);
+			jQuery('input[id*="city"]').val(obj.cidade);
+			jQuery('select[id*="region_id"]').val(obj.codigo);
+			jQuery('input[id*="region"]').val(obj.codigo);
+			jQuery('.msgcep').hide();
+			jQuery('input[id*="street2"],input[id*="street_2"]').focus();
+			if(!obj.logradouro){
+				jQuery('.msgcep').show();
+			}            
+		})
+		.fail(function(){
+			console.log('Falha!');
+		})
+		.always(function(){
+            console.log(obj);
+            loadposthideshow(false, '.onestepcheckout-postcod-process');
+		});
+	}
 }
 function loadposthideshow(show, classe, eq) {
     jQuery(document).ready(function ($) {

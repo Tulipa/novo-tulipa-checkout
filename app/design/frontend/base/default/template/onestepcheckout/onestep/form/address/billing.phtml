@@ -127,7 +127,7 @@
                     <div class="field">
                         <label for="billing:postcode" class="required"><em>*</em><?php echo $this->__('Zip/Postal Code') ?></label>
                         <div class="input-box">
-                            <input type="text" title="<?php echo $this->__('Zip/Postal Code') ?>" name="billing[postcode]" id="billing:postcode" class="input-text validate-number <?php echo $this->getAttributeValidationClass('postcode') ?>" value="<?php echo $this->getDataFromSession('postcode') ?>" maxlength="8" onblur="buscaCep('billing');" />
+                            <input type="text" title="<?php echo $this->__('Zip/Postal Code') ?>" name="billing[postcode]" id="billing:postcode" class="input-text validate-number <?php echo $this->getAttributeValidationClass('postcode') ?>" value="<?php echo $this->getDataFromSession('postcode') ?>" maxlength="8" onblur="buscaCep('<?=Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN)?>');" />
                         </div>
                     </div>
                     <div class="field">
@@ -156,7 +156,7 @@
                     </li>
                 <?php endfor; ?>
                 <?php if ($this->isVatAttributeVisible()) : ?>
-                    <li class="wide">
+                    <li class="wide" style="display:none;">
                         <label for="billing:vat_id"><?php echo $this->__('VAT Number') ?></label>
                         <div class="input-box">
                             <input type="text" id="billing:vat_id" name="billing[vat_id]" title="<?php echo $this->__('VAT Number') ?>" class="input-text <?php echo $this->getAttributeValidationClass('vat_id'); ?>" value="<?php echo $this->getDataFromSession('vat_id'); ?>" />

@@ -186,7 +186,7 @@
                         <li class="fields">
                             <?php if ($this->isNewsletterEnabled()): ?>
                                 <div class="checkbox">
-                                    <input type="checkbox" style="float: left;" name="is_subscribed" title="<?php echo $this->__('Sign Up for Newsletter') ?>" value="1" id="is_subscribed"<?php if ($this->getFormData()->getIsSubscribed()): ?> checked="checked"<?php endif; ?> class="checkbox" />
+                                    <input type="checkbox" style="float: left;" name="is_subscribed" title="<?php echo $this->__('Sign Up for Newsletter') ?>" value="1" id="is_subscribed"<?php //if ($this->getFormData()->getIsSubscribed()): ?> checked="checked"<?php //endif; ?> class="checkbox" />
                                     <label for="is_subscribed" style="position: relative;bottom: 3px;font-size: 14px;font-weight: normal;"><?php echo $this->__('Sign Up for Newsletter') ?></label>
                                 </div>
                             <?php endif ?>
@@ -204,12 +204,8 @@
         <?php endif; ?>
     </form>
 <script>
-	urlatual = window.location.protocol +"//"+ window.location.host + window.location.pathname;
-	if(urlatual.indexOf("/loja/") >= 0){newurlatual = window.location.protocol +"//"+ window.location.host+'/loja/';}
-	else if(urlatual.indexOf("/site/") >= 0){newurlatual = window.location.protocol +"//"+ window.location.host+'/site/';}
-	else if(urlatual.indexOf("/leo/") >= 0){newurlatual = window.location.protocol +"//"+ window.location.host+'/leo/';}
-	else if(urlatual.indexOf("/novo/") >= 0){newurlatual = window.location.protocol +"//"+ window.location.host+'/novo/';}
-	else{newurlatual = window.location.protocol +"//"+ window.location.host+'/';}	
+	var urlatual = "<?php echo Mage::helper('core/url')->getHomeUrl(); ?>";
+	console.log(urlatual);
 </script>
     <script type="text/javascript">
         //<![CDATA[
@@ -274,7 +270,7 @@
         Validation.add('validate-email-exist', '<?php echo $this->__('Please enter a valid email address. For example johndoe@domain.com.') ?>', function(value) {
             if (checkMail(value)) {
                 var ok = false;
-                var url = newurlatual+'/onestepcheckout/ajax/check_email/';
+                var url = urlatual+'/onestepcheckout/ajax/check_email/';
                 new Ajax.Request(url, {
                     method: 'post',
                     asynchronous: false,
@@ -303,7 +299,7 @@
         Validation.add('validate-taxvat', '<?php echo $this->__('This is a required field.') ?>', function(value) {
             if (validaCPF(value,0)) {
                 var ok = false;
-                var url = newurlatual+'/onestepcheckout/ajax/check_taxvat/';
+                var url = urlatual+'/onestepcheckout/ajax/check_taxvat/';
                 new Ajax.Request(url, {
                     method: 'post',
                     asynchronous: false,
