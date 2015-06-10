@@ -49,7 +49,7 @@
                     <div class="field">
                         <label for="shipping:postcode" class="required"><em>*</em><?php echo $this->__('Zip/Postal Code') ?></label>
                         <div class="input-box">
-                            <input type="text" title="<?php echo $this->__('Zip/Postal Code') ?>" name="shipping[postcode]" id="shipping:postcode" class="input-text validate-zip-international validate-number <?php echo $this->getAttributeValidationClass('postcode') ?>" value="<?php echo $this->getDataFromSession('postcode') ?>" maxlength="8" onblur="buscaCep('shipping');"/>
+                            <input type="text" title="<?php echo $this->__('Zip/Postal Code') ?>" name="shipping[postcode]" id="shipping:postcode" class="input-text validate-zip-international validate-number <?php echo $this->getAttributeValidationClass('postcode') ?>" value="<?php echo $this->getDataFromSession('postcode') ?>" maxlength="8" onblur="buscaCep('<?=Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN)?>','shipping:');"/>
                         </div>
                     </div>
                     <div class="field">
@@ -106,7 +106,7 @@
                     </div>
                 </li>
                 <?php if ($this->isVatAttributeVisible()) : ?>
-                    <li class="wide">
+                    <li class="wide" style="display:none;">
                         <label for="shipping:vat_id"><?php echo $this->__('VAT Number') ?></label>
                         <div class="input-box">
                             <input type="text" id="shipping:vat_id" name="shipping[vat_id]" title="<?php echo $this->__('VAT Number') ?>" class="input-text <?php echo $this->getAttributeValidationClass('vat_id'); ?>" value="<?php echo $this->getDataFromSession('vat_id'); ?>" />

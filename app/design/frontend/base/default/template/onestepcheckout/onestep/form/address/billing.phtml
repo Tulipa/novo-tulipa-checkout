@@ -127,7 +127,7 @@
                     <div class="field">
                         <label for="billing:postcode" class="required"><em>*</em><?php echo $this->__('Zip/Postal Code') ?></label>
                         <div class="input-box">
-                            <input type="text" title="<?php echo $this->__('Zip/Postal Code') ?>" name="billing[postcode]" id="billing:postcode" class="input-text validate-number <?php echo $this->getAttributeValidationClass('postcode') ?>" value="<?php echo $this->getDataFromSession('postcode') ?>" maxlength="8" onblur="buscaCep('<?=Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN)?>');" />
+                            <input type="text" title="<?php echo $this->__('Zip/Postal Code') ?>" name="billing[postcode]" id="billing:postcode" class="input-text validate-number <?php echo $this->getAttributeValidationClass('postcode') ?>" value="<?php echo $this->getDataFromSession('postcode') ?>" maxlength="8" onblur="buscaCep('<?=Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN)?>','billing:');" />
                         </div>
                     </div>
                     <div class="field">
@@ -212,12 +212,8 @@
     <?php echo $this->getChildHtml('extra'); ?>
 </div>
 <script>
-	urlatual = window.location.protocol +"//"+ window.location.host + window.location.pathname;
-	if(urlatual.indexOf("/loja/") >= 0){newurlatual = window.location.protocol +"//"+ window.location.host+'/loja/';}
-	else if(urlatual.indexOf("/site/") >= 0){newurlatual = window.location.protocol +"//"+ window.location.host+'/site/';}
-	else if(urlatual.indexOf("/leo/") >= 0){newurlatual = window.location.protocol +"//"+ window.location.host+'/leo/';}
-	else if(urlatual.indexOf("/novo/") >= 0){newurlatual = window.location.protocol +"//"+ window.location.host+'/novo/';}
-	else{newurlatual = window.location.protocol +"//"+ window.location.host+'/';}	
+    var urlatual = "<?php echo Mage::helper('core/url')->getHomeUrl(); ?>";
+	console.log(urlatual);	
 </script>
 <script type="text/javascript">
     //<![CDATA[
@@ -267,7 +263,7 @@
     Validation.add('validate-email-exist', '<?php echo $this->__('Please enter a valid email address. For example johndoe@domain.com.') ?>', function(value) {
         if (checkMail(value)) {
             var ok = false;
-            var url = newurlatual+'/onestepcheckout/ajax/check_email/';
+            var url = urlatual+'/onestepcheckout/ajax/check_email/';
             new Ajax.Request(url, {
                 method: 'post',
                 asynchronous: false,
@@ -296,7 +292,7 @@
     Validation.add('validate-taxvat', '<?php echo $this->__('This is a required field.') ?>', function(value) {
         if (validaCPF(value,0)) {
             var ok = false;
-            var url = newurlatual+'/onestepcheckout/ajax/check_taxvat/';
+            var url = urlatual+'/onestepcheckout/ajax/check_taxvat/';
             new Ajax.Request(url, {
                 method: 'post',
                 asynchronous: false,

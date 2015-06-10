@@ -142,11 +142,11 @@ function checkCPF(vCPF) {
     return((mControle1 * 10) + mControle);
 }
 //Busca de CEP na base dos correios por Ajax
-var host,cep,obj;
-function buscaCep(host) {
+var host,cep,obj,origem;
+function buscaCep(host,origem) {
     console.log('Buscando CEP...');
-	if(jQuery('select[name*="country_id"]').val() == "BR"){		
-		cep = jQuery('input[id*="postcode"]').val().replace(/[^0-9]+/g, '');
+	if(jQuery('select[name="'+origem+'country_id"]').val() == "BR" || jQuery('select[id="'+origem+'country_id"]').val() == "BR"){		
+		cep = jQuery('input[id="'+origem+'postcode"]').val().replace(/[^0-9]+/g, '');
 		if (cep.toString().length != 8) {
 			return false;
 		}
@@ -159,13 +159,13 @@ function buscaCep(host) {
 		 })	
 		.done(function(respostaCEP){
 			obj = jQuery.parseJSON(respostaCEP);
-			jQuery('input[id*="street1"],input[id*="street_1"]').val(obj.logradouro);
-			jQuery('input[id*="street4"],input[id*="street_4"]').val(obj.bairro);
-			jQuery('input[id*="city"]').val(obj.cidade);
-			jQuery('select[id*="region_id"]').val(obj.codigo);
-			jQuery('input[id*="region"]').val(obj.codigo);
+			jQuery('input[id="'+origem+'street1"],input[id="street_1"]').val(obj.logradouro);
+			jQuery('input[id="'+origem+'street4"],input[id="street_4"]').val(obj.bairro);
+			jQuery('input[id="'+origem+'city"]').val(obj.cidade);
+			jQuery('select[id="'+origem+'region_id"]').val(obj.codigo);
+			jQuery('input[id="'+origem+'region"]').val(obj.codigo);
 			jQuery('.msgcep').hide();
-			jQuery('input[id*="street2"],input[id*="street_2"]').focus();
+			jQuery('input[id="'+origem+'street2"]').focus();
 			if(!obj.logradouro){
 				jQuery('.msgcep').show();
 			}            
