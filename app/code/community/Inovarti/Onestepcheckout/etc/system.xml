@@ -2,13 +2,13 @@
 <config>
     <tabs>
         <inovarti translate="label" module="onestepcheckout">
-            <label>Inovarti</label>
+            <label>Novalis Tecnologia</label>
             <sort_order>299</sort_order>
         </inovarti>
     </tabs>
     <sections>
         <onestepcheckout translate="label" module="onestepcheckout">
-            <label>One Step Checkout</label>
+            <label>Novo Tulipa Checkout</label>
             <tab>inovarti</tab>
             <frontend_type>text</frontend_type>
             <sort_order>100</sort_order>
@@ -23,7 +23,7 @@
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                    <comment><![CDATA[<a href="http://www.inovarti.com.br" target="_blank"><img title="Inovarti" alt="Inovarti" src="//www.inovarti.com.br/inovarti_logo.php"/></a></span>]]></comment>
+                    <comment><![CDATA[<a href="http://www.novalistecnologia.com.br" target="_blank"><img title="Novalis Tecnologia" alt="Novalis Tecnologia" src="//www.novalistecnologia.com.br/sap/wp-content/uploads/2015/01/novalis-tecnologia-logo.png"/></a></span><br><br><ul><li><h3>Novo Tulipa Checkout</h3></li><li>Versão 1.0</li><li><i>Desenvolvido por Leonardo Daudt, Rodrigo Mascher e Carlos Bellon.</i></li></ul></br></br>]]></comment>
                     <fields>
                         <is_enabled translate="label">
                             <label>Enable One Step Checkout</label>

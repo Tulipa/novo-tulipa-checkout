@@ -1,0 +1,3 @@
+1.0 - 09/06/2015
+	-Novo Tulipa Checkout funcionando corretamente. Testado no Magento 1.9.1.1.
+	-Problema identificado: ao selecionar alguma forma de entrega ou pagamento os botões de exclusão de itens no carrinho dentro do Checkout não redirecionam para a página corretamente (Trabalhando nisso ainda...).
