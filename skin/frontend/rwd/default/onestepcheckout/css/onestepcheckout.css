@@ -9,7 +9,8 @@
 .customer-account-create .buttons-set {max-width: 100% !important}
 .form-list li.tipopessoa label{float:left; margin-right: 5%;}
 .form-list .control label, .sp-methods dt label, #checkout-shipping-method-load .sp-methods dd label, #co-shipping-method-form .sp-methods dd label, .product-options ul.options-list label {background-color:transparent!important ;min-width: 44% !important;padding: 6px 10px 6px 6px !important;}
-.form-list .control input.radio, .form-list .control input.checkbox{float: left;margin-right: -40px;margin-top: 11px !important;margin-left: -13px !important;}
+.form-list .control input.radio, .form-list .control input.checkbox{float: left;margin-right: -40px;margin-top: 5px !important;margin-left: -20px !important;}
+.form-list .control label{  margin-left: 20px;}
 input[type=email], input[type=search], input[type=number], input[type=password], input[type=tel], input[type=text]{width: 100% !important;}
 .form-list .wide {clear: both;}
 .form-list li.wide .input-box{width:100%;}
