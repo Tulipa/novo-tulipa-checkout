@@ -9,8 +9,9 @@
 .customer-account-create .buttons-set {max-width: 100% !important}
 .form-list li.tipopessoa label{float:left; margin-right: 5%;}
 .form-list .control label, .sp-methods dt label, #checkout-shipping-method-load .sp-methods dd label, #co-shipping-method-form .sp-methods dd label, .product-options ul.options-list label {background-color:transparent!important ;min-width: 44% !important;padding: 6px 10px 6px 6px !important;}
-.form-list .control input.radio, .form-list .control input.checkbox{float: left;margin-right: -40px;margin-top: 5px !important;margin-left: -20px !important;}
-.form-list .control label{  margin-left: 20px;}
+.form-list .control input.radio, .form-list .control input.checkbox{float: left;margin-right: -40px;margin-top: 11px !important;margin-left: -13px !important;}
+.onestepcheckout-index-index .form-list .control input.radio,.onestepcheckout-index-index .form-list .control input.checkbox{margin-top: 5px !important;margin-left: -20px !important;}
+.onestepcheckout-index-index .form-list .control label{  margin-left: 20px;}
 input[type=email], input[type=search], input[type=number], input[type=password], input[type=tel], input[type=text]{width: 100% !important;}
 .form-list .wide {clear: both;}
 .form-list li.wide .input-box{width:100%;}
@@ -60,7 +61,7 @@ input[type=email], input[type=search], input[type=number], input[type=password],
 .onestepcheckout-cart-table thead th.total{text-align: right;}
 .onestepcheckout-cart-table tbody td,.onestepcheckout-cart-table tfoot td,.onestepcheckout-cart-table tfoot th{border-bottom: thin solid #BEBCB7;padding: 3px 8px;}
 .onestepcheckout-cart-table .btn-remove{display: none;}
-.onestepcheckout-cart-table .btn-remove2{display: block;width: 16px;height: 16px;font-size: 0;line-height: 0;background: url(../../../../default/default/images/btn_trash.gif) 0 0 no-repeat;text-indent: -999em;overflow: hidden;}
+.onestepcheckout-cart-table .btn-remove2{display: block;width: 16px;height: 16px;font-size: 0;line-height: 0;background: url(../../images/btn_trash.gif) 0 0 no-repeat;text-indent: -999em;overflow: hidden;}
 @media only screen and (max-width: 770px) {
     .col3-set .col-1, .col3-set .col-2, .col3-set .col-3{
         float: none;
