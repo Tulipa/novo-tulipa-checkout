@@ -170,10 +170,10 @@
                             <input type="text" title="<?php echo $this->__('City') ?>" name="billing[city]" class="input-text <?php echo $this->getAttributeValidationClass('city') ?>" id="billing:city" value="<?php echo $this->getDataFromSession('city') ?>" />
                         </div>
                     </div>
-                    <div class="field">
+                    <div class="field" style="display:block !important;">
                         <label for="billing:region_id" class="required"><em>*</em><?php echo $this->__('State/Province') ?></label>
                         <div class="input-box">
-                            <select id="billing:region_id" name="billing[region_id]" title="<?php echo $this->__('State/Province') ?>" class="validate-select" style="display:none;">
+                            <select id="billing:region_id" name="billing[region_id]" title="<?php echo $this->__('State/Province') ?>" class="validate-select">
                                 <option value=""><?php echo $this->__('Please select region, state or province') ?></option>
                             </select>
                             <script type="text/javascript">

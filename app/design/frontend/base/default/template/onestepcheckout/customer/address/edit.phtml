@@ -96,7 +96,7 @@
                         <input type="text" name="city" value="<?php echo $this->escapeHtml($this->getAddress()->getCity()) ?>"  title="<?php echo $this->__('City') ?>" class="input-text <?php echo $this->helper('customer/address')->getAttributeValidationClass('city') ?>" id="city" />
                     </div>
                 </div>
-                <div class="field">
+                <div class="field" style="display:block !important;">
                     <label for="region_id" class="required"><em>*</em><?php echo $this->__('State/Province') ?></label>
                     <div class="input-box">
                         <select id="region_id" name="region_id" title="<?php echo $this->__('State/Province') ?>" class="validate-select" style="display:none;">
