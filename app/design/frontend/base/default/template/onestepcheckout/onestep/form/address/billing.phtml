@@ -192,8 +192,8 @@
                     </div>
                 </li>
                 <?php if ($this->isCustomerLoggedIn() && $this->customerHasAddresses()): ?>
-                    <li class="control">
-                        <label for="billing:save_in_address_book"><input type="checkbox" name="billing[save_in_address_book]" value="1" title="<?php echo $this->__('Save in address book') ?>" id="billing:save_in_address_book" onchange="if(window.shipping) shipping.setSameAsBilling(false);"<?php if ($this->getDataFromSession('save_in_address_book')): ?> checked="checked"<?php endif; ?> class="checkbox" /><?php echo $this->__('Save in address book') ?></label>
+                    <li class="control" style="display:none;">
+                        <label for="billing:save_in_address_book"><input type="checkbox" name="billing[save_in_address_book]" value="1" title="<?php echo $this->__('Save in address book') ?>" id="billing:save_in_address_book" onchange="if(window.shipping) shipping.setSameAsBilling(false);" checked="checked" class="checkbox" /><?php echo $this->__('Save in address book') ?></label>
                     </li>
                 <?php else: ?>
                     <li class="no-display"><input type="hidden" name="billing[save_in_address_book]" value="1" /></li>
